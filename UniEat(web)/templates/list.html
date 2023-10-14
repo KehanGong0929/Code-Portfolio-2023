@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>merchants - UniEat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>merchants</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if 'username' in session %}
+                    <li>Welcome, {{ session['username'] }}! (<a href="/logout">Logout</a>)</li>
+                {% else %}
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% for merchant in merchants %}
+            <h2>{{ merchant[1] }}</h2>
+            <p>{{ merchant[2] }}</p>
+            <p><strong>Location:</strong> {{ merchant[3] }}</p>
+            <a href="/detail/{{ merchant[0] }}">View Details</a>
+            <hr>
+        {% endfor %}
+    </main>
+</body>
+</html>
+
+
+    
+

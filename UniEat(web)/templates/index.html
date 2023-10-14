@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to UniEat</h1>
+        <nav>
+            <ul>
+                {% if 'username' in session %}
+                    <li>Welcome, {{ session['username'] }}! (<a href="/logout">Logout</a>)</li>
+                {% else %}
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Find the best food on campus!</h2>
+        <a href="/merchants" class="btn">Eat on Campus</a>
+    </main>
+</body>
+</html>
+

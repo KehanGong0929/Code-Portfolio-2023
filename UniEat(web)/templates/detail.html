@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ merchant[1] }} - UniEat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ merchant[1] }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if 'username' in session %}
+                    <li>Welcome, {{ session['username'] }}! (<a href="/logout">Logout</a>)</li>
+                {% else %}
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+                <li><a href="/signup">Sign Up</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>About {{ merchant[1] }}</h2>
+        <p>{{ merchant[2] }}</p>
+        <p><strong>Location:</strong> {{ merchant[3] }}</p>
+        <h2>Average Score: {{ avg_score }} / 5</h2>
+        <h2>Menu</h2>
+        <h2>Reviews ({{ reviews|length }})</h2>
+        <div class="reviews">
+        {% for review in reviews %}
+            <div class="review">
+                <div class="score">{{ review[0] }} / 5</div>
+                <div class="comment">{{ review[1] }}</div>
+            </div>
+        {% endfor %}
+        </div>
+        <a href="/review/{{ merchant[0] }}" class="review-button">Leave a Review</a>
+    </main>
+</body>
+</html>
